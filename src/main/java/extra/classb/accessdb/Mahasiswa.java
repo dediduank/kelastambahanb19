@@ -12,13 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Dedi Wardani
  */
 @Entity
-@Table(name = "mahasiswa")
+@Table(catalog = "mhsclassb", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Mahasiswa.findAll", query = "SELECT m FROM Mahasiswa m"),
     @NamedQuery(name = "Mahasiswa.findByNim", query = "SELECT m FROM Mahasiswa m WHERE m.nim = :nim"),
@@ -29,12 +31,12 @@ public class Mahasiswa implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "nim")
+    @Column(nullable = false, length = 13)
     private String nim;
     @Basic(optional = false)
-    @Column(name = "nama")
+    @Column(nullable = false, length = 50)
     private String nama;
-    @Column(name = "Alamat")
+    @Column(length = 100)
     private String alamat;
 
     public Mahasiswa() {
